@@ -1,0 +1,19 @@
+version: '3'
+services:
+  wms-ui:
+    build:
+      context: .
+    restart: always
+    container_name: wms-ui
+    image: wms-ui
+    networks:
+      - oc-wms_default
+    external_links:
+      - wms-gateway
+    ports:
+      - 80:80
+
+# 加入到后端网络， 默认为 oc-wms_default  | docker network ls   查看
+networks:
+  oc-wms_default:
+    external: true
